@@ -1,0 +1,20 @@
+
+header {
+    padding: 25px;
+}
+
+header h1 {
+    text-align: center;
+}
+
+nav {
+    ul {
+        margin-top: 20px;
+        list-style: none;
+        text-align: center;
+        li {
+            display: inline;
+            padding: 15px;
+        }
+    }
+}

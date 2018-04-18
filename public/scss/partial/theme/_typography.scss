@@ -1,0 +1,12 @@
+
+body {
+    font-family: 'helvetica-light', sans-serif;
+}
+
+a {
+    color: $linkcolor;
+    text-decoration: none;
+    &:hover {
+        color: $linkcolor_hover
+    }
+}

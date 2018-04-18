@@ -1,0 +1,19 @@
+
+<div id="all_items">
+    <ul class="items_list">
+        <% @bakery.each do |key, value| %>
+            <% value.each do |key2, value2| %>
+                <li class="item">
+                    <img class="item_image" src=" <%=  value2.image_link  %> "/>
+                    <div class="text">
+                        <h3 class="item_name"><%=  value2.name  %></h3>
+                        <p class="item_description"><%=  value2.description  %></p>
+                        <p class="item_price"><%=  value2.price  %></p>
+                        <p class="purchase_link"> <a href=" <%=  @home_url + value2.name.split(' ').join  %>" >add to bag</a></p>
+                    </div>
+                </li>
+            <% end %>
+        <% end %>
+    </ul>
+</div>
+

@@ -1,0 +1,16 @@
+
+<div id="cakes">
+    <ul class="cakes_list">
+        <% @bakery[:cakes].each do |key, value| %>
+            <li class="cake">
+                <img class="item_image" src=" <%=  value.image_link  %> "/>
+                <div class="text">
+                    <h3 class="item_name"><%=  value.name  %></h3>
+                    <p class="item_description"><%=  value.description  %></p>
+                    <p class="item_price"><%=  value.price  %></p>
+                    <p class="purchase_link"> <a href=" <%=  @home_url + value.name.split(' ').join  %>" >add to bag</a></p>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+</div>
