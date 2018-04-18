@@ -1,13 +1,15 @@
 
 
 footer {
-    position: absolute;
+    width: 100%;
+    position: fixed;
     bottom: 0;
-    text-align: center;
 }
 
 .copyright {
-    display: block;
+    width: 100%;
+    background: rgba(255, 255, 255, .5);
     font-size: .75em;
     padding: 15px;
+    text-align: center;
 }
