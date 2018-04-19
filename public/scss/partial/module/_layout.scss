@@ -6,7 +6,8 @@
 }
 
 body {
-    padding-top: 100px;
+    padding-top: 150px;
+    padding-bottom: 150px;
     background: blanchedalmond url(../imgs/bread_house.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -16,6 +17,12 @@ body {
 
 main {
     width: 80%;
-    margin: 0 auto;
+    margin: 0px auto;
 }
 
+.page_404 {
+    text-align: center;
+    padding-top: 50px;
+    font-size: 5em;
+    color: $linkcolor; 
+}

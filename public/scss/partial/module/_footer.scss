@@ -2,14 +2,15 @@
 
 footer {
     width: 100%;
-    position: fixed;
-    bottom: 0;
 }
 
 .copyright {
     width: 100%;
+    position: fixed;
+    bottom: 0;
     background: rgba(255, 255, 255, .5);
     font-size: .75em;
     padding: 15px;
     text-align: center;
+    z-index: 10000;
 }
