@@ -3,22 +3,24 @@ header {
     position: absolute;
     top: 0;
     width: 100%;
-    padding: 50px;
+    padding: 20px;
     background: rgba(255, 255, 255, .7);
 }
 
 header h1 {
     text-align: center;
+    text-transform: capitalize;
 }
 
 nav {
     ul {
-        margin-top: 20px;
+        margin-top: 5px;
         list-style: none;
         text-align: center;
         li {
             display: inline;
             padding: 15px;
+            font-weight: bold;
         }
     }
 }
