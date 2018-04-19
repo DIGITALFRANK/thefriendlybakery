@@ -171,6 +171,14 @@ get '/:page' do |page|
     end 
 end
 
+post 'email/sent' do 
+    if success
+        erb :email_items_success.erb
+    else
+        erb :index
+    end
+end
+
 
 # attempt at select item route    ///   also check link is correct in product categories display loops / full name of item, no spaces
 # <p class="purchase_link"> <a href=" <%=  @home_url + value2.name.split(' ').join  %>" >add to bag</a></p>

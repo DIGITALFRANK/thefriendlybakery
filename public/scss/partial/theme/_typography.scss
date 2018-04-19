@@ -7,6 +7,7 @@ a {
     color: $linkcolor;
     text-decoration: none;
     &:hover {
-        color: $linkcolor_hover
+        color: $linkcolor_hover;
+        transition: .5s;
     }
 }
