@@ -50,19 +50,19 @@ end
 
 
 #cookies
-choc_chip = Cookie.new("imgs/cookies/choc_chip_cookie.png", "chocolate chip cookie", "$7", "a chocolaty chocolate chip cookie")
+choc_chip = Cookie.new("imgs/cookies/choc_chip_cookie.png", "chocolate chip cookie", "$7 each", "a chocolaty chocolate chip cookie")
 bakery[:cookies][:choc_chip] = choc_chip
 
-p_butter = Cookie.new("imgs/cookies/p_butter_cookie.png", "peanut butter cookie", "$7", "delicious peanut butter, mmmhhhh...")
+p_butter = Cookie.new("imgs/cookies/p_butter_cookie.png", "peanut butter cookie", "$7 each", "delicious peanut butter, mmmhhhh...")
 bakery[:cookies][:p_butter] = p_butter
 
-o_raisin = Cookie.new("imgs/cookies/o_raisin_cookie.png", "oatmeal raisin cookie", "$7", "break it up in your morning oatmeal")
+o_raisin = Cookie.new("imgs/cookies/o_raisin_cookie.png", "oatmeal raisin cookie", "$7 each", "break it up in your morning oatmeal")
 bakery[:cookies][:o_raisin] = o_raisin
 
-macadamian = Cookie.new("imgs/cookies/macadamian_cookie.png", "macadamia nuts cookie", "$7", "you too will like to be macadamian")
+macadamian = Cookie.new("imgs/cookies/macadamian_cookie.png", "macadamia nuts cookie", "$7 each", "you too will like to be macadamian")
 bakery[:cookies][:macadamian] = macadamian
 
-empire = Cookie.new("imgs/cookies/empire_cookie.png", "empire cookies", "$7", "lovely empire cookies, great for dessert")
+empire = Cookie.new("imgs/cookies/empire_cookie.png", "empire cookies", "$7 each", "lovely empire cookies, great for dessert")
 bakery[:cookies][:empire] = empire
 
 puts bakery[:cookies][:p_butter].name
@@ -72,19 +72,19 @@ puts bakery[:cookies]
 
 
 #muffins
-choc_chip = Muffin.new("imgs/muffins/choc_chip_muffin.png", "chocolate chip muffin", "$10", "a chocolaty chocolate chip muffin")
+choc_chip = Muffin.new("imgs/muffins/choc_chip_muffin.png", "chocolate chip muffin", "$10 each", "a chocolaty chocolate chip muffin")
 bakery[:muffins][:choc_chip] = choc_chip
 
-blueberry = Muffin.new("imgs/muffins/blueberry_muffin.png", "blueberry muffin", "$10", "a delicious burst of fresh blueberries")
+blueberry = Muffin.new("imgs/muffins/blueberry_muffin.png", "blueberry muffin", "$10 each", "a delicious burst of fresh blueberries")
 bakery[:muffins][:blueberry] = blueberry
 
-corn = Muffin.new("imgs/muffins/cornbread_muffin.png", "cornbread muffin", "$10", "elegant cornbread cookies, munch on!")
+corn = Muffin.new("imgs/muffins/cornbread_muffin.png", "cornbread muffin", "$10 each", "elegant cornbread cookies, munch on!")
 bakery[:muffins][:corn] = corn
 
-banana = Muffin.new("imgs/muffins/banana_muffin.png", "banana muffin", "$10", "a chocolaty chocolate chip cookie")
+banana = Muffin.new("imgs/muffins/banana_muffin.png", "banana muffin", "$10 each", "a chocolaty chocolate chip cookie")
 bakery[:muffins][:banana] = banana
 
-m_glory = Muffin.new("imgs/muffins/m_glory_muffin.png", "morning glory muffin", "$10", "a chocolaty chocolate chip cookie")
+m_glory = Muffin.new("imgs/muffins/m_glory_muffin.png", "morning glory muffin", "$10 each", "a chocolaty chocolate chip cookie")
 bakery[:muffins][:m_glory] = m_glory
 
 puts bakery[:muffins][:banana].name
@@ -171,13 +171,34 @@ get '/:page' do |page|
     end 
 end
 
-post 'email/sent' do 
-    if success
-        erb :email_items_success.erb
-    else
-        erb :index
-    end
+post '/contact' do
+    @email = params[:email]
+    @message = params[:message]
+
+    from = Email.new(email: @email)
+    to = Email.new(email: 'frank@digital.com')
+    subject = 'your items list from The Friendly Bakery'
+    content = Content.new(type: 'text/plain', value: @message)
+    mail = Mail.new(from, subject, to, content)
+
+    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    response = sg.client.mail._('send').post(request_body: mail.to_json)
+    puts response.status_code
+    puts response
+    puts response.body
+    # puts JSON.parse(response.body)
+    # puts response.headers
+
+    erb :index
 end
+
+# get 'email/sent' do 
+#     if success
+#         erb :email_items_success.erb
+#     else
+#         erb :index
+#     end
+# end
 
 
 # attempt at select item route    ///   also check link is correct in product categories display loops / full name of item, no spaces
@@ -185,8 +206,8 @@ end
 
 # get '/:product' do |product|
 #     for bakery[*].each do |key, value|
-#         if key.name == product
-#             erb : key.name
+#         if value.name == product
+#             erb : value.name
 #         end
 #     end 
 # end

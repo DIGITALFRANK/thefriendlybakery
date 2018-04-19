@@ -2,6 +2,9 @@
  @import 'vendor/normalize';
  @import 'vendor/animate';
 
+ @import 'partial/theme/colors';
+ @import 'partial/theme/typography';
+
  @import 'partial/module/media-queries';
  @import 'partial/module/layout';
  @import 'partial/module/header';
@@ -9,6 +12,6 @@
 
  @import 'partial/module/landing';
  @import 'partial/module/contact';
+ @import 'partial/module/products';
 
- @import 'partial/theme/colors';
- @import 'partial/theme/typography';
+
