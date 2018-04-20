@@ -171,14 +171,14 @@ get '/:page' do |page|
     end 
 end
 
-post '/contact' do
+post '/email_prompt' do
     @email = params[:email]
-    @message = params[:message]
+    @menu = params[:menu]
 
     from = Email.new(email: @email)
     to = Email.new(email: 'frank@digital.com')
     subject = 'your items list from The Friendly Bakery'
-    content = Content.new(type: 'text/plain', value: @message)
+    content = Content.new(type: 'text/plain', value: @menu)
     mail = Mail.new(from, subject, to, content)
 
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
@@ -186,10 +186,10 @@ post '/contact' do
     puts response.status_code
     puts response
     puts response.body
-    # puts JSON.parse(response.body)
-    # puts response.headers
+    puts JSON.parse(response.body)
+    puts response.headers
 
-    erb :index
+    erb :email_items_success
 end
 
 # get 'email/sent' do 
